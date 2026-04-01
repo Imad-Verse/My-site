@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #ff1403;
+            --dark-bg: #312f2f;
+            --light-text: #ffffff;
+            --section-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            font-family: 'Amiri', serif;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* تنسيقات الهيدر */
+        header {
+            text-align: center;
+            padding: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        } 
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 2.5px solid var(--primary-color);
+            margin: 2rem auto; /* إعادة margin-auto للمحاذاة المركزية */
+            object-fit: cover;
+        }
+
+        /* تنسيقات الأقسام */
+        .section-title-container {
+            background: var(--section-bg);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            color: #000000;
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        /* تنسيقات المشاريع */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .project {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        /* تنسيقات الأزرار والأيقونات */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 0.6rem 0;
+        }
+
+        .social-icons a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .fa-facebook:hover {
+            color: #1877F2;
+        }
+
+        .fa-telegram:hover {
+            color: #0088cc;
+        }
+
+        .fa-youtube:hover {
+            color: #c51b1b;
+        }
+
+        .fa-twitter:hover {
+            color: #1DA1F2;
+        }
+
+        .fa-instagram:hover {
+            color: #E1306C;
+        }
+
+        .fa-globe:hover {
+            color: #FFD700;
+        }
+
+        .fa-android:hover {
+            color: #A4C639;
+        }
+
+        .fa-tiktok:hover {
+            color: #000;
+        }
+
+        .download-btn {
+            background: var(--primary-color);
+            color: var(--light-text);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .download-btn:hover {
+            background: var(--light-text);
+            color: var(--dark-bg);
+            box-shadow: 0 4px 15px rgba(255, 20, 3, 0.4);
+        }
+
+        
+        /* تنسيقات الصناديق */
+        .qa-section {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .qa {
+            max-width: 500px;
+            margin: 0 auto 1rem;
+        }
+
+        .question {
+            border: none;
+            outline: none;
+            padding: 15px;
+            width: 100%;
+            color: gainsboro;
+            background-color: #1E1E1E;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 7px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .question::after {
+            content: '\002B';
+            font-size: 1.5rem;
+        }
+
+        .question.active::after {
+            content: '\2212';
+        }
+
+        .panel {
+            max-height: 0;
+            overflow: hidden;
+            background-color: snow;
+            border-radius: 0 0 7px 7px;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .panel .text {
+            padding: 1rem;
+            color: #333;
+            text-align: right;
+            font-size: 1.5rem;
+            line-height: 1.5;
+        }
+
+        /* الفوتر */
+        footer {
+            background: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+
+    /* الزر المنبثق */
+
+        #floatingButton {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        font-size: 24px;
+    }
+
+    #floatingButton:hover {
+        background-color: #0056b3;
+    }
+
+    /* النافذة المنبثقة */
+    #popupForm {
+        display: none;
+        position: fixed;
+        right: 20px;
+        bottom: 100px;
+        width: 300px;
+        background: white;
+        padding: 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+    }
+
+    #popupForm input, #popupForm textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    #popupForm button {
+        width: 100%;
+        padding: 10px;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    /* زر إغلاق  */
+    #closeButton {
+        width: 100%;
+        padding: 10px;
+        background-color: #ff0000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        text-align: center;
+        font-weight: bold;
+        margin-top: 10px; /* إضافة مسافة بين زر الإغلاق وزر الإرسال */
+    }
+
+    #closeButton:hover {
+        background-color: darkred;
+    }
+
+    /*زر إرسال*/
+    #sendMessage {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+
+    }
+
+    #sendMessage:hover {
+        background-color: #0056b3;
+    }
+    
+
+    /* النص فوق حقل الاسم */
+    #popupForm h4 {
+        color: black;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+
+        /* التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .profile-img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project {
+                padding: 1rem;
+            }
+
+            .question {
+                font-size: 1.1rem;
+                padding: 10px;
+            }
+
+            .panel .text {
+                font-size: 1.3rem;
+            }
+            }
