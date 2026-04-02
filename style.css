@@ -55,8 +55,8 @@ body {
 
 /* Navbar */
 .navbar {
-    position: sticky;
-    top: 20px;
+    position: relative; /* Static position */
+    top: 0;
     left: 0;
     width: 100%;
     z-index: 2000;
@@ -626,30 +626,19 @@ footer {
     color: var(--text-muted);
 }
 
-.navbar {
-    background: transparent;
-    pointer-events: none;
-}
-
 @media (max-width: 768px) {
-    .nav-menu-btn { display: block; }
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background: rgba(15, 23, 42, 0.95);
-        backdrop-filter: blur(20px);
-        padding: 2rem;
-        gap: 1rem;
-        border-radius: 20px;
-        margin-top: 1rem;
-        border: 1px solid var(--glass-border);
-        display: none;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    .nav-toggle-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
     }
-    .nav-links.active { display: flex; animation: slideDown 0.3s ease; }
+    .nav-horizontal-links a {
+        font-size: 0.95rem;
+        padding: 0.6rem 1rem;
+    }
+    .nav-menu-wrapper {
+        padding: 0.2rem;
+    }
     header h1 { font-size: 2.2rem; }
     .profile-img { width: 180px; height: 180px; }
     .section-title { font-size: 1.8rem; }
