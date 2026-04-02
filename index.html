@@ -132,8 +132,8 @@
                     class="project-img" alt="الشيخ الفوزان" />
                 <h3>الشيخ صالح الفوزان</h3>
                 <p>موقع الشيخ الفوزان جعلته في تطبيق حتى يسهل تصفحه.</p>
-                <a href="https://play.google.com/store/apps/details?id=com.abulharith.tech.al.fawzan.app"
-                    target="_blank" class="download-btn">اضغط للتحميل</a>
+                <a href="apps/com_abulharith_tech_al_fawzan_app.apk" target="_blank" class="download-btn">اضغط
+                    للتحميل</a>
             </div>
 
             <div class="project glass reveal">
@@ -387,12 +387,22 @@
         </div>
 
         <!-- الفوتر -->
-        <footer class="reveal">
-            <h2 dir="rtl">دعاؤكم لي بالتوفيق والسداد</h2>
+        <footer class="reveal glass">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>أبو الحارث عماد بعلول</h3>
+                    <p>نشر الخير عبر الوسائل الحديثة هو غايتنا.</p>
+                </div>
+                <div class="footer-bottom">
+                    <p>جميع الحقوق محفوظة &copy; 2024 - <span id="currentYear"></span></p>
+                    <p>صنع بكل ❤️ حب واخلاص للنفع العام</p>
+                </div>
+            </div>
         </footer>
 
-        <!-- زر المراسلة -->
+        <!-- أزرار عائمة -->
         <button id="floatingButton" title="راسلني"><i class="fas fa-envelope"></i></button>
+        <button id="scrollTop" title="لأعلى الصفحة"><i class="fas fa-chevron-up"></i></button>
 
         <!-- النافذة المنبثقة -->
         <div id="popupForm" class="glass">
@@ -401,8 +411,10 @@
             <input type="email" id="email" placeholder="بريدك الإلكتروني" required />
             <input type="text" id="subject" placeholder="موضوع الرسالة" required />
             <textarea id="message" placeholder="اكتب رسالتك هنا..." rows="4" required></textarea>
-            <button id="sendMessage">إرسال الرسالة</button>
-            <button id="closeButton">إغلاق</button>
+            <div class="modal-buttons">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i> إرسال الرسالة</button>
+                <button id="closeButton"><i class="fas fa-times"></i> إغلاق</button>
+            </div>
         </div>
     </div>
 

@@ -354,7 +354,7 @@ header p {
 #floatingButton {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    left: 30px;
     width: 65px;
     height: 65px;
     background: var(--primary);
@@ -379,12 +379,12 @@ header p {
     display: none;
     position: fixed;
     bottom: 110px;
-    right: 30px;
+    left: 30px;
     width: 350px;
     padding: 2rem;
     z-index: 1000;
     max-width: calc(100vw - 60px);
-    transform-origin: bottom right;
+    transform-origin: bottom left;
 }
 
 #popupForm.active {
@@ -405,12 +405,12 @@ header p {
 
 #popupForm input, #popupForm textarea {
     width: 100%;
-    padding: 1rem;
+    padding: 0.8rem; /* More compact */
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
     color: white;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
     font-family: inherit;
     transition: var(--transition);
 }
@@ -421,27 +421,116 @@ header p {
     background: rgba(255, 255, 255, 0.1);
 }
 
-#popupForm button {
-    margin-top: 0.5rem;
+.modal-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+}
+
+#sendMessage, #closeButton {
+    flex: 1;
+    padding: 0.7rem 1rem; /* Smaller padding */
+    border: none;
+    border-radius: 10px; /* Adjusted radius */
+    font-size: 0.9rem; /* Smaller font */
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+#sendMessage {
+    flex: 2; /* Give more space to the primary action */
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+#sendMessage:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+    filter: brightness(1.1);
 }
 
 #closeButton {
-    background: transparent;
-    border: 1px solid rgba(239, 68, 68, 0.5);
-    color: #ef4444;
+    background: var(--secondary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
 }
 
 #closeButton:hover {
-    background: rgba(239, 68, 68, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5);
+    filter: brightness(1.1);
 }
 
-/* Footer */
+/* Scroll To Top Button */
+#scrollTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.05); /* Matching glass look */
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+#scrollTop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#scrollTop:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Footer Styling */
 footer {
     text-align: center;
-    padding: 4rem 1rem;
-    margin-top: 4rem;
+    padding: 4rem 1rem 2rem;
+    margin-top: 6rem;
     border-top: 1px solid var(--glass-border);
-    margin-top: 4rem;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.footer-bottom {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+    color: var(--text-muted);
 }
 
 @media (max-width: 768px) {
@@ -449,4 +538,5 @@ footer {
     .profile-img { width: 180px; height: 180px; }
     .section-title { font-size: 1.8rem; }
     .app-grid { grid-template-columns: 1fr; }
+    #popupForm { width: calc(100vw - 60px); left: 30px; }
 }

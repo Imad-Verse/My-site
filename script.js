@@ -39,19 +39,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const popupForm = document.getElementById('popupForm');
     const closeButton = document.getElementById('closeButton');
     const sendMessage = document.getElementById('sendMessage');
+    const floatIcon = floatingButton.querySelector('i');
 
-    floatingButton.addEventListener('click', () => {
-        popupForm.classList.add('active');
-    });
-
-    closeButton.addEventListener('click', () => {
+    function closePopup() {
         popupForm.classList.remove('active');
+        floatIcon.className = 'fas fa-envelope';
+    }
+
+    floatingButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        popupForm.classList.toggle('active');
+        if (popupForm.classList.contains('active')) {
+            floatIcon.className = 'fas fa-times';
+        } else {
+            floatIcon.className = 'fas fa-envelope';
+        }
     });
+
+    closeButton.addEventListener('click', closePopup);
 
     // Close on outside click
     window.addEventListener('click', (e) => {
-        if (e.target === popupForm) {
-            popupForm.classList.remove('active');
+        if (popupForm.classList.contains('active') && !popupForm.contains(e.target) && !floatingButton.contains(e.target)) {
+            closePopup();
         }
     });
 
@@ -73,6 +83,30 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Optional: clear form and close
         popupForm.classList.remove('active');
+    });
+
+    // --- Dynamic Year ---
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+
+    // --- Scroll to Top Button ---
+    const scrollTop = document.getElementById('scrollTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTop.classList.add('active');
+        } else {
+            scrollTop.classList.remove('active');
+        }
+    });
+
+    scrollTop.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 
     // --- Smooth Scrolling for Navigation ---
