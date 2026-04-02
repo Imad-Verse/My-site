@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Navigation Horizontal Logic ---
+    const navToggle = document.getElementById('navToggle');
+    const navLinksRow = document.querySelector('.nav-horizontal-links');
+    const navbar = document.querySelector('.navbar');
+
+    if (navToggle) {
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinksRow.classList.toggle('active');
+        });
+    }
+
+    // Close menu on link click
+    document.querySelectorAll('.nav-horizontal-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinksRow.classList.remove('active');
+        });
+    });
+
+    // Close on outside click
+    window.addEventListener('click', (e) => {
+        if (navLinksRow && navLinksRow.classList.contains('active') && !navLinksRow.contains(e.target) && !navToggle.contains(e.target)) {
+            navLinksRow.classList.remove('active');
+        }
+    });
+
+    // Scroll logic removed - background is handled correctly by the glass wrapper now.
+
     // --- Intersection Observer for Reveal Animations ---
     const revealElements = document.querySelectorAll('.reveal');
     const revealObserver = new IntersectionObserver((entries) => {
@@ -14,21 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Accordion Logic ---
     const questions = document.querySelectorAll('.question');
     questions.forEach(question => {
-        question.addEventListener('click', function() {
-            // Toggle active class on button
-            this.classList.toggle('active');
-            
-            const panel = this.nextElementSibling;
+        question.addEventListener('click', () => {
+            const panel = question.nextElementSibling;
+            question.classList.toggle('active');
             if (panel.style.maxHeight) {
                 panel.style.maxHeight = null;
             } else {
-                // Close other panels if desired (optional)
-                // questions.forEach(q => {
-                //     if (q !== this) {
-                //         q.classList.remove('active');
-                //         q.nextElementSibling.style.maxHeight = null;
-                //     }
-                // });
                 panel.style.maxHeight = panel.scrollHeight + "px";
             }
         });
@@ -58,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeButton.addEventListener('click', closePopup);
 
-    // Close on outside click
+    // Close modal on outside click
     window.addEventListener('click', (e) => {
         if (popupForm.classList.contains('active') && !popupForm.contains(e.target) && !floatingButton.contains(e.target)) {
             closePopup();
@@ -72,17 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const subject = document.getElementById('subject').value.trim();
         const message = document.getElementById('message').value.trim();
 
-        if (!name || !email || !subject || !message) {
-            alert('يرجى ملء جميع الحقول المطلوبة.');
-            return;
+        if (name && email && subject && message) {
+            const mailtoLink = `mailto:abulharithimad@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("الاسم: " + name + "\nالبريد: " + email + "\n\nالرسالة:\n" + message)}`;
+            window.location.href = mailtoLink;
+        } else {
+            alert('يرجى ملء جميع الحقول أولاً.');
         }
-
-        const mailtoLink = `mailto:abulharithimad@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("الاسم: " + name + "\nالبريد: " + email + "\n\n" + message)}`;
-        
-        window.location.href = mailtoLink;
-        
-        // Optional: clear form and close
-        popupForm.classList.remove('active');
     });
 
     // --- Dynamic Year ---
@@ -112,10 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Smooth Scrolling for Navigation ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+                e.preventDefault();
+                document.querySelector(href).scrollIntoView({
                     behavior: 'smooth'
                 });
             }

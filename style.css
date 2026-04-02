@@ -46,10 +46,102 @@ body {
     font-family: 'Amiri', 'Outfit', sans-serif;
 }
 
+/* Layout */
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
+}
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+    pointer-events: none; /* Let clicks pass through empty parts */
+}
+
+.nav-content {
+    display: flex;
+    justify-content: flex-start; /* Right side in RTL */
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.nav-menu-wrapper {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 0.3rem; 
+    border-radius: 50px;
+    pointer-events: auto; /* Enable clicks here */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-toggle-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px var(--primary-glow);
+    flex-shrink: 0;
+}
+
+.nav-toggle-btn:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+.nav-horizontal-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden; /* Added to enforce shrinking */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-horizontal-links.active {
+    opacity: 1;
+    max-width: 1000px; /* Expand to show links */
+    margin-right: 0.5rem; /* Space inside the glass pill */
+    padding-right: 0.5rem;
+}
+
+.nav-horizontal-links a {
+    color: var(--text-white);
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 25px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+}
+
+.nav-horizontal-links a:hover {
+    background: var(--primary);
+    border-color: transparent;
+    box-shadow: 0 5px 15px var(--primary-glow);
 }
 
 /* Glassmorphism Utility */
@@ -77,8 +169,9 @@ body {
 /* Header & Profile */
 header {
     text-align: center;
-    padding: 4rem 1rem 2rem;
-    position: relative;
+    padding: 3rem 1rem 4rem;
+    border-bottom: 1px solid var(--glass-border);
+    margin-bottom: 4rem;
 }
 
 .profile-container {
@@ -533,10 +626,38 @@ footer {
     color: var(--text-muted);
 }
 
+.navbar {
+    background: transparent;
+    pointer-events: none;
+}
+
 @media (max-width: 768px) {
+    .nav-menu-btn { display: block; }
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        padding: 2rem;
+        gap: 1rem;
+        border-radius: 20px;
+        margin-top: 1rem;
+        border: 1px solid var(--glass-border);
+        display: none;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+    .nav-links.active { display: flex; animation: slideDown 0.3s ease; }
     header h1 { font-size: 2.2rem; }
     .profile-img { width: 180px; height: 180px; }
     .section-title { font-size: 1.8rem; }
     .app-grid { grid-template-columns: 1fr; }
     #popupForm { width: calc(100vw - 60px); left: 30px; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

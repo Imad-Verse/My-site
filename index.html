@@ -29,8 +29,28 @@
 
 <body>
     <div class="container">
+        <!-- القائمة العلوية -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="nav-menu-wrapper glass">
+                    <button id="navToggle" class="nav-toggle-btn" title="القائمة">
+                        <i class="fas fa-home"></i>
+                    </button>
+                    <ul class="nav-horizontal-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#projects">المشاريع</a></li>
+                        <li><a href="#apps">التطبيقات</a></li>
+                        <li><a href="#bots">البوتات</a></li>
+                        <li><a href="#blogs">المدونات</a></li>
+                        <li><a href="#about">عني</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+
         <!-- الهيدر -->
-        <header class="reveal">
+        <header id="home" class="reveal">
             <div class="profile-container">
                 <div class="profile-background"></div>
                 <img src="https://lh3.googleusercontent.com/-jMmVzv1PoHo/Z5nm3U4QngI/AAAAAAAAEp0/OdJaw4vDrPM7dsatgKV8VBIhF1OSmRL-gCNcBGAsYHQ/s1080/IMG_ORG_1738139336484.jpeg"
@@ -58,7 +78,7 @@
         </header>
 
         <!-- مشاريع أشرف عليها -->
-        <div class="section-title-container reveal">
+        <div id="projects" class="section-title-container reveal">
             <h2 class="section-title">مشاريع أشرف عليها</h2>
         </div>
         <div class="app-grid">
@@ -98,7 +118,7 @@
         </div>
 
         <!-- تطبيقات هاتف -->
-        <div class="section-title-container reveal">
+        <div id="apps" class="section-title-container reveal">
             <h2 class="section-title">تطبيقات هاتف</h2>
         </div>
         <div class="app-grid">
@@ -154,7 +174,7 @@
         </div>
 
         <!-- بوتات تليجرام -->
-        <div class="section-title-container reveal">
+        <div id="bots" class="section-title-container reveal">
             <h2 class="section-title">بوتات تليجرام</h2>
         </div>
         <div class="app-grid">
@@ -190,7 +210,7 @@
         </div>
 
         <!-- مواقع ومدونات وصفحات -->
-        <div class="section-title-container reveal">
+        <div id="blogs" class="section-title-container reveal">
             <h2 class="section-title">مواقع ومدونات وصفحات</h2>
         </div>
         <div class="app-grid">
@@ -244,7 +264,7 @@
         </div>
 
         <!-- معلومات أكثر عني (Accordion) -->
-        <div class="section-title-container reveal">
+        <div id="about" class="section-title-container reveal">
             <h2 class="section-title">معلومات أكثر عني</h2>
         </div>
         <div class="qa-container reveal">
