@@ -51,12 +51,13 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
+    position: relative; /* Anchoring for absolute items */
 }
 
 /* Navbar */
 .navbar {
-    position: relative; /* Static position */
-    top: 0;
+    position: absolute !important; /* Force static-like scroll away */
+    top: 20px;
     left: 0;
     width: 100%;
     z-index: 2000;
@@ -169,7 +170,8 @@ body {
 /* Header & Profile */
 header {
     text-align: center;
-    padding: 3rem 1rem 4rem;
+    padding: 8rem 1rem 4rem;
+    position: relative;
     border-bottom: 1px solid var(--glass-border);
     margin-bottom: 4rem;
 }
@@ -601,28 +603,87 @@ header p {
 
 /* Footer Styling */
 footer {
-    text-align: center;
-    padding: 4rem 1rem 2rem;
+    padding: 5rem 1rem 3rem;
     margin-top: 6rem;
     border-top: 1px solid var(--glass-border);
-    background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent);
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
 }
 
 .footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 3rem;
 }
 
-.footer-section h3 {
-    margin-bottom: 0.5rem;
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    text-align: right;
+}
+
+.footer-section h3, .footer-section h4 {
+    margin-bottom: 1.5rem;
     color: var(--primary);
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-section h3::after, .footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--primary);
+}
+
+.about-section p {
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.links-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.links-section li {
+    margin-bottom: 0.8rem;
+}
+
+.links-section a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.links-section a i {
+    font-size: 0.8rem;
+    color: var(--primary);
+    transition: var(--transition);
+}
+
+.links-section a:hover {
+    color: var(--primary);
+    transform: translateX(-5px);
+}
+
+.links-section a:hover i {
+    transform: translateX(-3px);
 }
 
 .footer-bottom {
-    padding-top: 1.5rem;
+    padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    font-size: 0.9rem;
+    text-align: center;
+    font-size: 0.95rem;
     color: var(--text-muted);
 }
 
@@ -639,7 +700,20 @@ footer {
     .nav-menu-wrapper {
         padding: 0.2rem;
     }
+    header { padding: 6rem 1rem 3.5rem; }
     header h1 { font-size: 2.2rem; }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    .footer-section h3::after, .footer-section h4::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    .links-section a {
+        justify-content: center;
+    }
     .profile-img { width: 180px; height: 180px; }
     .section-title { font-size: 1.8rem; }
     .app-grid { grid-template-columns: 1fr; }
