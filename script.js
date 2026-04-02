@@ -1,49 +1,90 @@
-document.getElementById("floatingButton").addEventListener("click", function () {
-                document.getElementById("popupForm").style.display = "block";
-            });
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Intersection Observer for Reveal Animations ---
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
 
-            document.getElementById("closeButton").addEventListener("click", function () {
-                document.getElementById("popupForm").style.display = "none";
-            });
+    revealElements.forEach(el => revealObserver.observe(el));
 
-            document.getElementById("sendMessage").addEventListener("click", function () {
-                let name = document.getElementById("name").value.trim();
-                let email = document.getElementById("email").value.trim();
-                let subject = document.getElementById("subject").value.trim();
-                let message = document.getElementById("message").value.trim();
+    // --- Accordion Logic ---
+    const questions = document.querySelectorAll('.question');
+    questions.forEach(question => {
+        question.addEventListener('click', function() {
+            // Toggle active class on button
+            this.classList.toggle('active');
+            
+            const panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                // Close other panels if desired (optional)
+                // questions.forEach(q => {
+                //     if (q !== this) {
+                //         q.classList.remove('active');
+                //         q.nextElementSibling.style.maxHeight = null;
+                //     }
+                // });
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    });
 
-                // التأكد من أن الحقول ليست فارغة
-                if (name.length > 0) {
-                    if (email.length > 0) {
-                        if (subject.length > 0) {
-                            if (message.length > 0) {
-                                let emailAddress = "abulharithimad@gmail.com";
-                                let subjectEncoded = encodeURIComponent(subject);
-                                let bodyEncoded = encodeURIComponent("الاسم: " + name + "\nالبريد: " + email + "\n\nالرسالة:\n" + message);
+    // --- Contact Form Modal ---
+    const floatingButton = document.getElementById('floatingButton');
+    const popupForm = document.getElementById('popupForm');
+    const closeButton = document.getElementById('closeButton');
+    const sendMessage = document.getElementById('sendMessage');
 
-                                let mailtoLink = "mailto:" + emailAddress + "?subject=" + subjectEncoded + "&amp;body=" + bodyEncoded;
+    floatingButton.addEventListener('click', () => {
+        popupForm.classList.add('active');
+    });
 
-                                setTimeout(function () {
-                                    window.location.href = mailtoLink;
-                                }, 100); // تأخير بسيط لتجنب مشاكل XML
-                            } else {
-                                alert("الرجاء كتابة الرسالة!");
-                            }
-                        } else {
-                            alert("الرجاء إدخال موضوع الرسالة!");
-                        }
-                    } else {
-                        alert("الرجاء إدخال بريدك الإلكتروني!");
-                    }
-                } else {
-                    alert("الرجاء إدخال اسمك!");
-                }
-            });
+    closeButton.addEventListener('click', () => {
+        popupForm.classList.remove('active');
+    });
 
-document.querySelectorAll('.question').forEach(button => {
-                button.addEventListener('click', function () {
-                    this.classList.toggle('active');
-                    const panel = this.nextElementSibling;
-                    panel.style.maxHeight = panel.style.maxHeight ? null : panel.scrollHeight + "px";
+    // Close on outside click
+    window.addEventListener('click', (e) => {
+        if (e.target === popupForm) {
+            popupForm.classList.remove('active');
+        }
+    });
+
+    // --- Form Submission (Mailto) ---
+    sendMessage.addEventListener('click', () => {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !subject || !message) {
+            alert('يرجى ملء جميع الحقول المطلوبة.');
+            return;
+        }
+
+        const mailtoLink = `mailto:abulharithimad@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("الاسم: " + name + "\nالبريد: " + email + "\n\n" + message)}`;
+        
+        window.location.href = mailtoLink;
+        
+        // Optional: clear form and close
+        popupForm.classList.remove('active');
+    });
+
+    // --- Smooth Scrolling for Navigation ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
                 });
-            });
+            }
+        });
+    });
+});
