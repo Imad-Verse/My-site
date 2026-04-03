@@ -1,20 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap');
-
 :root {
     /* Color Palette */
     --bg-dark: #0f172a;
     --bg-accent: #1e293b;
-    --primary: #3b82f6; /* Premium Blue */
+    --primary: #3b82f6;
+    /* Premium Blue */
     --primary-glow: rgba(59, 130, 246, 0.5);
-    --secondary: #ef4444; /* Keep a hint of the original red */
+    --secondary: #ef4444;
+    /* Keep a hint of the original red */
     --text-white: #f8fafc;
     --text-muted: #94a3b8;
-    
+
     /* Glassmorphism */
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-blur: blur(12px);
-    
+
     /* Shadows & Transitions */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
@@ -27,12 +27,15 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html {
     scroll-behavior: smooth;
 }
 
 body {
     background-color: var(--bg-dark);
-    background-image: 
+    background-image:
         radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%),
         radial-gradient(at 100% 0%, rgba(239, 68, 68, 0.05) 0px, transparent 50%);
     color: var(--text-white);
@@ -51,24 +54,28 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
-    position: relative; /* Anchoring for absolute items */
+    position: relative;
+    /* Anchoring for absolute items */
 }
 
 /* Navbar */
 .navbar {
-    position: absolute !important; /* Force static-like scroll away */
+    position: absolute !important;
+    /* Force static-like scroll away */
     top: 20px;
     left: 0;
     width: 100%;
     z-index: 2000;
     padding: 0 1rem;
     margin-bottom: 2rem;
-    pointer-events: none; /* Let clicks pass through empty parts */
+    pointer-events: none;
+    /* Let clicks pass through empty parts */
 }
 
 .nav-content {
     display: flex;
-    justify-content: flex-start; /* Right side in RTL */
+    justify-content: flex-start;
+    /* Right side in RTL */
     align-items: center;
     max-width: 1100px;
     margin: 0 auto;
@@ -78,9 +85,10 @@ body {
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding: 0.3rem; 
+    padding: 0.3rem;
     border-radius: 50px;
-    pointer-events: auto; /* Enable clicks here */
+    pointer-events: auto;
+    /* Enable clicks here */
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: var(--shadow-sm);
 }
@@ -113,7 +121,8 @@ body {
     list-style: none;
     opacity: 0;
     max-width: 0;
-    overflow: hidden; /* Added to enforce shrinking */
+    overflow: hidden;
+    /* Added to enforce shrinking */
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
     padding: 0;
@@ -122,8 +131,10 @@ body {
 
 .nav-horizontal-links.active {
     opacity: 1;
-    max-width: 1000px; /* Expand to show links */
-    margin-right: 0.5rem; /* Space inside the glass pill */
+    max-width: 1000px;
+    /* Expand to show links */
+    margin-right: 0.5rem;
+    /* Space inside the glass pill */
     padding-right: 0.5rem;
 }
 
@@ -266,25 +277,76 @@ header p {
 }
 
 /* Brand Colors on Hover */
-.social-icons a:hover .fa-facebook-f { color: #1877F2; }
-.social-icons a:hover .fa-facebook { color: #1877F2; }
-.social-icons a:hover .fa-telegram-plane { color: #24A1DE; }
-.social-icons a:hover .fa-telegram { color: #24A1DE; }
-.social-icons a:hover .fa-youtube { color: #FF0000; }
-.social-icons a:hover .fa-github { color: #333; }
-.social-icons a:hover .fa-tiktok { color: #000; }
-.social-icons a:hover .fa-x-twitter { color: #1DA1F2; }
-.social-icons a:hover .fa-twitter { color: #1DA1F2; }
-.social-icons a:hover .fa-instagram { color: #E4405F; }
-.social-icons a:hover .fa-globe { color: #3b82f6; }
-.social-icons a:hover .fa-android { color: #A4C639; }
+.social-icons a:hover .fa-facebook-f {
+    color: #1877F2;
+}
+
+.social-icons a:hover .fa-facebook {
+    color: #1877F2;
+}
+
+.social-icons a:hover .fa-telegram-plane {
+    color: #24A1DE;
+}
+
+.social-icons a:hover .fa-telegram {
+    color: #24A1DE;
+}
+
+.social-icons a:hover .fa-youtube {
+    color: #FF0000;
+}
+
+.social-icons a:hover .fa-github {
+    color: #e6edf3;
+}
+
+.social-icons a:hover .fa-tiktok {
+    color: #000000;
+}
+
+.social-icons a:hover .fa-x-twitter {
+    color: #1DA1F2;
+}
+
+.social-icons a:hover .fa-twitter {
+    color: #1DA1F2;
+}
+
+.social-icons a:hover .fa-instagram {
+    color: #E4405F;
+}
+
+.social-icons a:hover .fa-globe {
+    color: #3b82f6;
+}
+
+.social-icons a:hover .fa-android {
+    color: #A4C639;
+}
 
 /* Let's also add a nice glow effect based on brand color */
-.social-icons a:hover:has(.fa-facebook-f), .social-icons a:hover:has(.fa-facebook) { box-shadow: 0 10px 25px rgba(24, 119, 242, 0.4); }
-.social-icons a:hover:has(.fa-telegram-plane), .social-icons a:hover:has(.fa-telegram) { box-shadow: 0 10px 25px rgba(36, 161, 222, 0.4); }
-.social-icons a:hover:has(.fa-youtube) { box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4); }
-.social-icons a:hover:has(.fa-github) { box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2); }
-.social-icons a:hover:has(.fa-instagram) { box-shadow: 0 10px 25px rgba(228, 64, 95, 0.4); }
+.social-icons a:hover:has(.fa-facebook-f),
+.social-icons a:hover:has(.fa-facebook) {
+    box-shadow: 0 10px 25px rgba(24, 119, 242, 0.4);
+}
+
+.social-icons a:hover:has(.fa-telegram-plane),
+.social-icons a:hover:has(.fa-telegram) {
+    box-shadow: 0 10px 25px rgba(36, 161, 222, 0.4);
+}
+
+.social-icons a:hover:has(.fa-youtube) {
+    box-shadow: 0 10px 25px rgba(255, 0, 0, 0.4);
+}
+
+.social-icons a:hover:has(.fa-github) {
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+.social-icons a:hover:has(.fa-instagram) {
+    box-shadow: 0 10px 25px rgba(228, 64, 95, 0.4);
+}
 
 /* Sections */
 .section-title-container {
@@ -419,7 +481,8 @@ header p {
 }
 
 .question::after {
-    content: '\f107'; /* FontAwesome Chevron */
+    content: '\f107';
+    /* FontAwesome Chevron */
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     transition: var(--transition);
@@ -488,8 +551,15 @@ header p {
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 #popupForm h4 {
@@ -498,9 +568,11 @@ header p {
     text-align: center;
 }
 
-#popupForm input, #popupForm textarea {
+#popupForm input,
+#popupForm textarea {
     width: 100%;
-    padding: 0.8rem; /* More compact */
+    padding: 0.8rem;
+    /* More compact */
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
@@ -510,7 +582,8 @@ header p {
     transition: var(--transition);
 }
 
-#popupForm input:focus, #popupForm textarea:focus {
+#popupForm input:focus,
+#popupForm textarea:focus {
     outline: none;
     border-color: var(--primary);
     background: rgba(255, 255, 255, 0.1);
@@ -523,12 +596,16 @@ header p {
     margin-top: 0.8rem;
 }
 
-#sendMessage, #closeButton {
+#sendMessage,
+#closeButton {
     flex: 1;
-    padding: 0.6rem 0.8rem; /* Even more compact */
+    padding: 0.6rem 0.8rem;
+    /* Even more compact */
     border: none;
-    border-radius: 8px; /* Slightly smaller radius */
-    font-size: 0.85rem; /* Slightly smaller font */
+    border-radius: 8px;
+    /* Slightly smaller radius */
+    font-size: 0.85rem;
+    /* Slightly smaller font */
     font-weight: 700;
     cursor: pointer;
     transition: var(--transition);
@@ -541,7 +618,8 @@ header p {
 }
 
 #sendMessage {
-    flex: 2; /* Give more space to the primary action */
+    flex: 2;
+    /* Give more space to the primary action */
     background: var(--primary);
     color: white;
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
@@ -572,7 +650,8 @@ header p {
     right: 30px;
     width: 60px;
     height: 60px;
-    background: rgba(255, 255, 255, 0.05); /* Matching glass look */
+    background: rgba(255, 255, 255, 0.05);
+    /* Matching glass look */
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border);
@@ -624,14 +703,16 @@ footer {
     text-align: right;
 }
 
-.footer-section h3, .footer-section h4 {
+.footer-section h3,
+.footer-section h4 {
     margin-bottom: 1.5rem;
     color: var(--primary);
     position: relative;
     padding-bottom: 0.5rem;
 }
 
-.footer-section h3::after, .footer-section h4::after {
+.footer-section h3::after,
+.footer-section h4::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -693,34 +774,55 @@ footer {
         height: 50px;
         font-size: 1.2rem;
     }
+
     .nav-horizontal-links a {
         font-size: 0.95rem;
         padding: 0.6rem 1rem;
     }
+
     .nav-menu-wrapper {
         padding: 0.2rem;
     }
-    header { padding: 6rem 1rem 3.5rem; }
-    header h1 { font-size: 2.2rem; }
+
+    header {
+        padding: 6rem 1rem 3.5rem;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: center;
     }
-    .footer-section h3::after, .footer-section h4::after {
+
+    .footer-section h3::after,
+    .footer-section h4::after {
         right: 50%;
         transform: translateX(50%);
     }
+
     .links-section a {
         justify-content: center;
     }
-    .profile-img { width: 180px; height: 180px; }
-    .section-title { font-size: 1.8rem; }
-    .app-grid { grid-template-columns: 1fr; }
-    #popupForm { width: calc(100vw - 60px); left: 30px; }
-}
 
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+    .profile-img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .app-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #popupForm {
+        width: calc(100vw - 60px);
+        left: 30px;
+    }
 }

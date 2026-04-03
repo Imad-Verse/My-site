@@ -44,10 +44,17 @@ document.addEventListener('DOMContentLoaded', () => {
     questions.forEach(question => {
         question.addEventListener('click', () => {
             const panel = question.nextElementSibling;
-            question.classList.toggle('active');
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
+            const isActive = question.classList.contains('active');
+
+            // Close all other panels
+            questions.forEach(q => {
+                q.classList.remove('active');
+                q.nextElementSibling.style.maxHeight = null;
+            });
+
+            // Toggle the clicked panel
+            if (!isActive) {
+                question.classList.add('active');
                 panel.style.maxHeight = panel.scrollHeight + "px";
             }
         });
@@ -91,12 +98,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const subject = document.getElementById('subject').value.trim();
         const message = document.getElementById('message').value.trim();
 
-        if (name && email && subject && message) {
-            const mailtoLink = `mailto:abulharithimad@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("الاسم: " + name + "\nالبريد: " + email + "\n\nالرسالة:\n" + message)}`;
-            window.location.href = mailtoLink;
-        } else {
+        if (!name || !email || !subject || !message) {
             alert('يرجى ملء جميع الحقول أولاً.');
+            return;
         }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('يرجى إدخال بريد إلكتروني صحيح.');
+            return;
+        }
+
+        const mailtoLink = `mailto:abulharithimad@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("الاسم: " + name + "\nالبريد: " + email + "\n\nالرسالة:\n" + message)}`;
+        window.location.href = mailtoLink;
     });
 
     // --- Dynamic Year ---
@@ -109,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollTop = document.getElementById('scrollTop');
     
     window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
+        if (window.scrollY > 300) {
             scrollTop.classList.add('active');
         } else {
             scrollTop.classList.remove('active');
@@ -129,9 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const href = this.getAttribute('href');
             if (href !== '#') {
                 e.preventDefault();
-                document.querySelector(href).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
